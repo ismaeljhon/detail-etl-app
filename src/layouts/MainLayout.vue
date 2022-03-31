@@ -7,7 +7,7 @@
     </q-header>
 
     <q-page-container>
-      <q-page class="row">
+      <q-page>
         <router-view />
       </q-page>
     </q-page-container>
