@@ -16,7 +16,9 @@
     </div>
     <div class="col-8">
       <TableList :columns="latestEtlColumns" :rows="latestEtls">
-        <template v-slot:company> </template>
+        <template v-slot:company="{ row }">
+          {{ row.company.name }}
+        </template>
         <template v-slot:action>
           <q-btn flat color="primary" label="View Details" />
         </template>

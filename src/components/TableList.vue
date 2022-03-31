@@ -10,7 +10,7 @@
     <tbody>
       <tr v-for="(row, index) in rows" :key="index">
         <td v-for="(column, index) in columns" :key="index">
-          <slot :name="column.name">
+          <slot :name="column.name" v-bind:row="row">
             {{ row[column.name] }}
           </slot>
         </td>
