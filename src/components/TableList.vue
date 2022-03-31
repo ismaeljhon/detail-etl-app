@@ -1,22 +1,34 @@
 <template>
-  <q-markup-table>
-    <thead>
-      <tr>
-        <th v-for="column in columns" :key="column.name" class="text-left">
-          {{ column.label }}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(row, index) in rows" :key="index">
-        <td v-for="(column, index) in columns" :key="index">
-          <slot :name="column.name" v-bind:row="row">
-            {{ row[column.name] }}
+  <q-table
+    :title="title"
+    :rows="rows"
+    :columns="columns"
+    :row-key="rowKey"
+    :no-data-label="noDatalabel"
+  >
+    <template v-slot:top-right>
+      <q-input
+        borderless
+        dense
+        debounce="300"
+        v-model="filter"
+        placeholder="Search"
+      >
+        <template v-slot:append>
+          <q-icon name="search" />
+        </template>
+      </q-input>
+    </template>
+    <template v-slot:body="props">
+      <q-tr :props="props">
+        <q-td v-for="column in columns" :key="column.name" :props="props">
+          <slot :name="column.name" v-bind:row="props.row">
+            {{ props.row[column.name] }}
           </slot>
-        </td>
-      </tr>
-    </tbody>
-  </q-markup-table>
+        </q-td>
+      </q-tr>
+    </template>
+  </q-table>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';
@@ -30,6 +42,7 @@ interface Column {
 }
 
 defineProps<{
+  title?: string | '';
   rows: any;
   columns: Column[];
   rowKey?: string | 'name';
