@@ -35,10 +35,11 @@ import { ref } from 'vue';
 
 interface Column {
   name: string;
-  align: string | 'center';
   label: string;
   field: string;
-  sortable: boolean | false;
+  required?: boolean | true;
+  align?: string | 'center';
+  sortable?: boolean | false;
 }
 
 defineProps<{
