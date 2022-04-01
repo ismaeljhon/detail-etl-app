@@ -1,7 +1,7 @@
 <template>
   <div class="row q-pa-md">
     <div class="col-12">
-      <TableList :columns="companyColumns" :rows="companies">
+      <TableList title="Companies" :columns="companyColumns" :rows="companies">
         <template v-slot:action>
           <q-btn flat color="primary" label="View Details" />
         </template>
@@ -15,7 +15,11 @@
       </div>
     </div>
     <div class="col-8">
-      <TableList :columns="latestEtlColumns" :rows="latestEtls">
+      <TableList
+        title="Companies"
+        :columns="latestEtlColumns"
+        :rows="latestEtls"
+      >
         <template v-slot:company="{ row }">
           {{ row.company.name }}
         </template>
